@@ -1,0 +1,44 @@
+/* ================================= */
+@import "tailwindcss";
+
+@layer base {
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		outline: none;
+		user-select: none;
+	}
+
+	html {
+		font-size: 16px;
+	}
+
+	body {
+		font-family: sans-serif;
+		color: #dbcfff;
+		background: black;
+		width: 100%;
+		min-height: 100vh;
+		/* overflow-x: hidden; */
+	}
+}
+
+/* ==============================Autofill Fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	background-color: white !important;
+	-webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+	-webkit-text-fill-color: #dbcfff !important;
+	transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+	html {
+		font-size: 14px;
+	}
+}
+/* ================================= */

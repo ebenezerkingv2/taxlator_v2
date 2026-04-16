@@ -1,0 +1,54 @@
+// ====================================
+// src/components/ui/buttons/GeneralButton.tsx
+// ==================================== GENERAL BUTTON COMPONENT
+
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+
+// ==================================== FUNCTION
+type GeneralButtonProps = {
+	children: ReactNode;
+	className?: string;
+	onClick?: () => void;
+	type?: "button" | "submit";
+	to?: string;
+};
+
+// ==================================== FUNCTION
+export default function GeneralButton({
+	children,
+	className = "",
+	onClick,
+	type = "button",
+	to,
+}: GeneralButtonProps) {
+	const baseStyles = `
+		relative inline-block px-[1.2rem] py-[0.5rem] font-bold bg-black/30 hover:bg-black group`;
+
+	// ====================== NAVIGATION BUTTON
+	if (to) {
+		return (
+			<NavLink to={to} className={`${baseStyles} ${className}`}>
+				{children}
+
+				<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-300 group-hover:w-full" />
+				<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-300 group-hover:w-full" />
+			</NavLink>
+		);
+	}
+
+	// ====================== SUBMIT BUTTON
+	return (
+		<motion.button
+			type={type}
+			onClick={onClick}
+			className={`border-t border-b border-t-[#f4ab17] border-b-[#01bdfc] ${baseStyles} ${className}`}
+		>
+			{children}
+
+			<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-300 group-hover:w-full" />
+			<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-300 group-hover:w-full" />
+		</motion.button>
+	);
+}
