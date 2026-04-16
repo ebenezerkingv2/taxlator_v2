@@ -21,8 +21,8 @@ export default function SectionFrame({
 	return (
 		<motion.section
 			id={id}
-			initial={{ opacity: 0, y: 40, scale: 0.98 }}
-			whileInView={{ opacity: 1, y: 0, scale: 1 }}
+			initial={{ opacity: 0, y: 80 }}
+			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut" }}
 			viewport={{ amount: 0.2 }}
 			className={`relative bg-black py-[8rem] md:py-[8rem] overflow-hidden ${className}`}

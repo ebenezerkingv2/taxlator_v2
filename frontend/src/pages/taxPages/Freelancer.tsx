@@ -8,6 +8,7 @@ import TaxOptionsButton from "../../components/ui/buttons/TaxOptionsButton";
 import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
+import TaxFrame from "../../components/ui/frames/TaxFrame";
 
 // ==================================== FUNCTION
 export default function Freelancer() {
@@ -52,104 +53,98 @@ export default function Freelancer() {
 	};
 
 	return (
-		<div className="min-h-screen bg-black py-4">
-			<motion.div
-				initial={{ opacity: 0, y: 40 }}
-				animate={{ opacity: 1, y: 0 }}
-				className="w-full max-w-7xl mx-auto px-4"
-			>
-				{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
-				<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
-					<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
-						Tax Options
-					</TaxOptionsButton>
-				</div>
+		<TaxFrame>
+			{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
+			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
+				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
+					Tax Options
+				</TaxOptionsButton>
+			</div>
 
-				{/* ================= MAIN GRID ================= */}
-				<div className="grid lg:grid-cols-2 gap-6">
-					{/* LEFT */}{" "}
-					{/* ================= LEFT (TAX CALCULATOR FORM) ======================= */}
-					<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
-						{/* ================= HEADER  */}
-						<div className="flex flex-col items-center text-[#01bdfc] mb-6">
-							<h2 className="text-xl font-semibold">FREELANCER</h2>
-							<p className="text-xs text-[#dbcfff]/90">Self-employed tax</p>
-						</div>
+			{/* ================= MAIN GRID ================= */}
+			<div className="grid lg:grid-cols-2 gap-6">
+				{/* ================= LEFT */}
+				{/* ================= LEFT (TAX CALCULATOR FORM) ======================= */}
+				<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
+					{/* ================= HEADER  */}
+					<div className="flex flex-col items-center text-[#01bdfc] mb-6">
+						<h2 className="text-xl font-semibold">FREELANCER</h2>
+						<p className="text-xs text-[#dbcfff]/90">Self-employed tax</p>
+					</div>
 
-						{/* ================= FORM  */}
-						<div className="space-y-2">
-							<CurrencyInput
-								id="income"
-								label="Gross Annual Income"
-								value={income}
-								onChange={setIncome}
-							/>
+					{/* ================= FORM  */}
+					<div className="space-y-2">
+						<CurrencyInput
+							id="income"
+							label="Gross Annual Income"
+							value={income}
+							onChange={setIncome}
+						/>
 
-							<CurrencyInput
-								id="pension"
-								label="Pension Contribution"
-								value={pension}
-								onChange={setPensionContribution}
-							/>
+						<CurrencyInput
+							id="pension"
+							label="Pension Contribution"
+							value={pension}
+							onChange={setPensionContribution}
+						/>
 
-							{/* ================= TOGGLE ================= */}
-							<div className="space-y-3 text-[#dbcfff]/90">
-								<div className="flex justify-between items-center bg-black p-3 rounded-lg">
-									<span className="text-sm">Include Business Expenses</span>
+						{/* ================= TOGGLE ================= */}
+						<div className="space-y-3 text-[#dbcfff]/90">
+							<div className="flex justify-between items-center bg-black p-3 rounded-lg">
+								<span className="text-sm">Include Business Expenses</span>
 
-									<input
-										type="checkbox"
-										className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
-										checked={includeExpenses}
-										onChange={(e) => setIncludeExpenses(e.target.checked)}
-									/>
-								</div>
-
-								{includeExpenses && (
-									<CurrencyInput
-										id="expenses"
-										label="Total Business Expenses"
-										value={totalBusinessExpenses}
-										onChange={setTotalBusinessExpenses}
-									/>
-								)}
+								<input
+									type="checkbox"
+									className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
+									checked={includeExpenses}
+									onChange={(e) => setIncludeExpenses(e.target.checked)}
+								/>
 							</div>
 
-							{/* ================= CALCULATE BUTTON ================= */}
-							<CalculateTaxButton
-								onClick={handleCalculate}
-								enabled={isValid}
-								loading={false}
-							/>
+							{includeExpenses && (
+								<CurrencyInput
+									id="expenses"
+									label="Total Business Expenses"
+									value={totalBusinessExpenses}
+									onChange={setTotalBusinessExpenses}
+								/>
+							)}
 						</div>
+
+						{/* ================= CALCULATE BUTTON ================= */}
+						<CalculateTaxButton
+							onClick={handleCalculate}
+							enabled={isValid}
+							loading={false}
+						/>
 					</div>
-					{/* ================= RIGHT (RESULTS) ================= */}
-					<motion.div layout className="relative rounded-2xl p-6 bg-black">
-						<h3 className="text-lg font-semibold mb-6">Live Result</h3>
-
-						<div className="space-y-4 text-sm">
-							<ResultRow label="Pension" value={result.pension} />
-							<ResultRow label="Expenses" value={result.expenses} />
-							<ResultRow
-								label="Total Deductions"
-								value={result.totalDeductions}
-								highlight
-							/>
-
-							<hr className="border-[#01bdfc]" />
-
-							<ResultRow label="Taxable Income" value={result.taxableIncome} />
-							<ResultRow
-								label="Estimated Tax"
-								value={result.estimatedTax}
-								highlight
-								big
-							/>
-						</div>
-					</motion.div>
 				</div>
-			</motion.div>
-		</div>
+				{/* ================= RIGHT (RESULTS) ================= */}
+				<motion.div layout className="relative rounded-2xl p-6 bg-black">
+					<h3 className="text-lg font-semibold mb-6">Live Result</h3>
+
+					<div className="space-y-4 text-sm">
+						<ResultRow label="Pension" value={result.pension} />
+						<ResultRow label="Expenses" value={result.expenses} />
+						<ResultRow
+							label="Total Deductions"
+							value={result.totalDeductions}
+							highlight
+						/>
+
+						<hr className="border-[#01bdfc]" />
+
+						<ResultRow label="Taxable Income" value={result.taxableIncome} />
+						<ResultRow
+							label="Estimated Tax"
+							value={result.estimatedTax}
+							highlight
+							big
+						/>
+					</div>
+				</motion.div>
+			</div>
+		</TaxFrame>
 	);
 }
 

@@ -8,6 +8,7 @@ import TaxOptionsButton from "../../components/ui/buttons/TaxOptionsButton";
 import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
+import TaxFrame from "../../components/ui/frames/TaxFrame";
 
 // ==================================== FUNCTION
 export default function PayePit() {
@@ -55,125 +56,119 @@ export default function PayePit() {
 	};
 
 	return (
-		<div className="min-h-screen bg-black py-4">
-			<motion.div
-				initial={{ opacity: 0, y: 40 }}
-				animate={{ opacity: 1, y: 0 }}
-				className="w-full max-w-7xl mx-auto px-4"
-			>
-				{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
-				<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
-					<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
-						Tax Options
-					</TaxOptionsButton>
-				</div>
+		<TaxFrame>
+			{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
+			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
+				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
+					Tax Options
+				</TaxOptionsButton>
+			</div>
 
-				{/* ================= MAIN GRID ================= */}
-				<div className="grid lg:grid-cols-2 gap-6">
-					{/* ================= LEFT (TAX CALCULATOR FORM) ======================= */}
-					<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
-						{/* ================= HEADER  */}
-						<div className="flex flex-col items-center text-[#01bdfc] mb-6">
-							<h2 className="text-xl font-semibold">PAYE / PIT</h2>
-							<p className="text-xs text-[#dbcfff]/90">Personal Income Tax</p>
-						</div>
-
-						{/* ================= FORM  */}
-						<div className="space-y-2">
-							<CurrencyInput
-								id="income"
-								label="Gross Annual Income"
-								value={income}
-								onChange={setIncome}
-							/>
-
-							<CurrencyInput
-								id="rent"
-								label="Annual Rent"
-								value={rent}
-								onChange={setRent}
-							/>
-
-							<CurrencyInput
-								id="other"
-								label="Other Deductions"
-								value={other}
-								onChange={setOther}
-							/>
-
-							{/* ================= TOGGLES ================= */}
-							<div className="space-y-3 text-[#dbcfff]/90">
-								<div className="flex justify-between items-center bg-black p-3 rounded-lg">
-									<span className="lg:hidden text-sm">NHIS (5%)</span>
-									<span className="hidden lg:block text-sm">
-										Include National Housing Fund (5%)
-									</span>
-
-									<input
-										type="checkbox"
-										className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
-										checked={nhis}
-										onChange={(e) => setNhis(e.target.checked)}
-									/>
-								</div>
-
-								<div className="flex justify-between items-center bg-black p-3 rounded-lg">
-									<span className="lg:hidden text-sm">NHF (2.5%)</span>
-									<span className="hidden lg:block text-sm">
-										Include National Health Insurance Scheme (2.5%)
-									</span>
-
-									<input
-										type="checkbox"
-										className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
-										checked={nhf}
-										onChange={(e) => setNhf(e.target.checked)}
-									/>
-								</div>
-
-								<div className="bg-black p-3 rounded-lg">
-									<p className="text-sm">Pension Contribution (8%)</p>
-								</div>
-							</div>
-
-							{/* ================= CALCULATE BUTTON ================= */}
-							<CalculateTaxButton
-								onClick={handleCalculate}
-								enabled={isValid}
-								loading={false}
-							/>
-						</div>
+			{/* ================= MAIN GRID ================= */}
+			<div className="grid lg:grid-cols-2 gap-6">
+				{/* ================= LEFT (TAX CALCULATOR FORM) ======================= */}
+				<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
+					{/* ================= HEADER  */}
+					<div className="flex flex-col items-center text-[#01bdfc] mb-6">
+						<h2 className="text-xl font-semibold">PAYE / PIT</h2>
+						<p className="text-xs text-[#dbcfff]/90">Personal Income Tax</p>
 					</div>
 
-					{/* ================= RIGHT (RESULTS) ================= */}
-					<motion.div layout className="relative rounded-2xl p-6 bg-black">
-						<h3 className="text-lg font-semibold mb-6">Live Result</h3>
+					{/* ================= FORM  */}
+					<div className="space-y-2">
+						<CurrencyInput
+							id="income"
+							label="Gross Annual Income"
+							value={income}
+							onChange={setIncome}
+						/>
 
-						<div className="space-y-4 text-sm">
-							<ResultRow label="Pension (8%)" value={result.pension} />
-							<ResultRow label="NHIS" value={result.nhisDeduction} />
-							<ResultRow label="NHF" value={result.nhfDeduction} />
-							<ResultRow label="Rent Relief" value={result.rentRelief} />
-							<ResultRow
-								label="Total Deductions"
-								value={result.totalDeductions}
-								highlight
-							/>
+						<CurrencyInput
+							id="rent"
+							label="Annual Rent"
+							value={rent}
+							onChange={setRent}
+						/>
 
-							<hr className="border-[#01bdfc]" />
+						<CurrencyInput
+							id="other"
+							label="Other Deductions"
+							value={other}
+							onChange={setOther}
+						/>
 
-							<ResultRow label="Taxable Income" value={result.taxableIncome} />
-							<ResultRow
-								label="Estimated Tax"
-								value={result.estimatedTax}
-								highlight
-								big
-							/>
+						{/* ================= TOGGLES ================= */}
+						<div className="space-y-3 text-[#dbcfff]/90">
+							<div className="flex justify-between items-center bg-black p-3 rounded-lg">
+								<span className="lg:hidden text-sm">NHIS (5%)</span>
+								<span className="hidden lg:block text-sm">
+									Include National Housing Fund (5%)
+								</span>
+
+								<input
+									type="checkbox"
+									className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
+									checked={nhis}
+									onChange={(e) => setNhis(e.target.checked)}
+								/>
+							</div>
+
+							<div className="flex justify-between items-center bg-black p-3 rounded-lg">
+								<span className="lg:hidden text-sm">NHF (2.5%)</span>
+								<span className="hidden lg:block text-sm">
+									Include National Health Insurance Scheme (2.5%)
+								</span>
+
+								<input
+									type="checkbox"
+									className="appearance-none w-4 h-4 border border-[#01bdfc]/50 rounded-full checked:bg-[#f4ab17] cursor-pointer"
+									checked={nhf}
+									onChange={(e) => setNhf(e.target.checked)}
+								/>
+							</div>
+
+							<div className="bg-black p-3 rounded-lg">
+								<p className="text-sm">Pension Contribution (8%)</p>
+							</div>
 						</div>
-					</motion.div>
+
+						{/* ================= CALCULATE BUTTON ================= */}
+						<CalculateTaxButton
+							onClick={handleCalculate}
+							enabled={isValid}
+							loading={false}
+						/>
+					</div>
 				</div>
-			</motion.div>
-		</div>
+
+				{/* ================= RIGHT (RESULTS) ================= */}
+				<motion.div layout className="relative rounded-2xl p-6 bg-black">
+					<h3 className="text-lg font-semibold mb-6">Live Result</h3>
+
+					<div className="space-y-4 text-sm">
+						<ResultRow label="Pension (8%)" value={result.pension} />
+						<ResultRow label="NHIS" value={result.nhisDeduction} />
+						<ResultRow label="NHF" value={result.nhfDeduction} />
+						<ResultRow label="Rent Relief" value={result.rentRelief} />
+						<ResultRow
+							label="Total Deductions"
+							value={result.totalDeductions}
+							highlight
+						/>
+
+						<hr className="border-[#01bdfc]" />
+
+						<ResultRow label="Taxable Income" value={result.taxableIncome} />
+						<ResultRow
+							label="Estimated Tax"
+							value={result.estimatedTax}
+							highlight
+							big
+						/>
+					</div>
+				</motion.div>
+			</div>
+		</TaxFrame>
 	);
 }
 

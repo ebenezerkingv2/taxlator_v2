@@ -9,6 +9,7 @@ import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
 import CompanySizeSelect from "../../components/ui/buttons/CompanySizeSelect";
+import TaxFrame from "../../components/ui/frames/TaxFrame";
 
 // ==================================== FUNCTION
 export default function CIT() {
@@ -79,97 +80,88 @@ export default function CIT() {
 	};
 
 	return (
-		<div className="min-h-screen bg-black py-4">
-			<motion.div
-				initial={{ opacity: 0, y: 40 }}
-				animate={{ opacity: 1, y: 0 }}
-				className="w-full max-w-7xl mx-auto px-4"
-			>
-				{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
-				<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
-					<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
-						Tax Options
-					</TaxOptionsButton>
-				</div>
+		<TaxFrame>
+			{/* ================= HEADER TAX OPTIONS BUTTON ================= */}
+			<div className="text-[1.2rem] md:text-[1.5rem] flex justify-center py-1">
+				<TaxOptionsButton className="px-[2rem] py-[0.3rem]">
+					Tax Options
+				</TaxOptionsButton>
+			</div>
 
-				{/* ================= MAIN GRID ================= */}
-				<div className="grid lg:grid-cols-2 gap-6">
-					{/* ================= LEFT (TAX CALCULATOR FORM) ======================= */}
-					<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
-						{/* ================= HEADER  */}
-						<div className="flex flex-col items-center text-[#01bdfc] mb-6">
-							<h2 className="text-xl font-semibold">Company Income Tax</h2>
-							<p className="text-xs text-[#dbcfff]/90">Corporate tax</p>
-						</div>
-
-						{/* ================= FORM  */}
-						<div className="space-y-2">
-							<CurrencyInput
-								id="turnover"
-								label="Annual Turnover"
-								value={annualTurnover}
-								onChange={setAnnualTurnover}
-							/>
-
-							<CurrencyInput
-								id="assets"
-								label="Fixed Assets"
-								value={fixedAssets}
-								onChange={setFixedAssets}
-							/>
-
-							<CurrencyInput
-								id="profit"
-								label="Taxable Profit"
-								value={taxableProfit}
-								onChange={setTaxableProfit}
-							/>
-
-							<CompanySizeSelect
-								value={companySize}
-								onChange={setCompanySize}
-							/>
-
-							{companySize === "Multinational" && (
-								<CurrencyInput
-									id="accountingProfit"
-									label="Accounting Profit"
-									value={accountingProfit}
-									onChange={setAccountingProfit}
-								/>
-							)}
-
-							{/* ================= CALCULATE BUTTON ================= */}
-							<CalculateTaxButton
-								onClick={handleCalculate}
-								enabled={isValid}
-								loading={false}
-							/>
-						</div>
+			{/* ================= MAIN GRID ================= */}
+			<div className="grid lg:grid-cols-2 gap-6">
+				{/* ================= LEFT (TAX CALCULATOR FORM) ======================= */}
+				<div className="relative rounded-2xl p-6 bg-gradient-to-b from-black via-[#000aff] to-black">
+					{/* ================= HEADER  */}
+					<div className="flex flex-col items-center text-[#01bdfc] mb-6">
+						<h2 className="text-xl font-semibold">Company Income Tax</h2>
+						<p className="text-xs text-[#dbcfff]/90">Corporate tax</p>
 					</div>
 
-					{/* ================= RIGHT (RESULTS) ================= */}
-					<motion.div layout className="relative rounded-2xl p-6 bg-black">
-						<h3 className="text-lg font-semibold mb-6">Live Result</h3>
+					{/* ================= FORM  */}
+					<div className="space-y-2">
+						<CurrencyInput
+							id="turnover"
+							label="Annual Turnover"
+							value={annualTurnover}
+							onChange={setAnnualTurnover}
+						/>
 
-						<div className="space-y-4 text-sm">
-							<ResultRow label="Base Profit" value={result.baseProfit} />
-							<ResultRow label="Tax Rate (%)" value={result.taxRate * 100} />
-							<ResultRow label="Minimum Tax" value={result.minimumTax} />
+						<CurrencyInput
+							id="assets"
+							label="Fixed Assets"
+							value={fixedAssets}
+							onChange={setFixedAssets}
+						/>
 
-							<hr className="border-[#01bdfc]" />
+						<CurrencyInput
+							id="profit"
+							label="Taxable Profit"
+							value={taxableProfit}
+							onChange={setTaxableProfit}
+						/>
 
-							<ResultRow
-								label="Estimated Tax"
-								value={result.estimatedTax}
-								highlight
-								big
+						<CompanySizeSelect value={companySize} onChange={setCompanySize} />
+
+						{companySize === "Multinational" && (
+							<CurrencyInput
+								id="accountingProfit"
+								label="Accounting Profit"
+								value={accountingProfit}
+								onChange={setAccountingProfit}
 							/>
-						</div>
-					</motion.div>
+						)}
+
+						{/* ================= CALCULATE BUTTON ================= */}
+						<CalculateTaxButton
+							onClick={handleCalculate}
+							enabled={isValid}
+							loading={false}
+						/>
+					</div>
 				</div>
-			</motion.div>
-		</div>
+
+				{/* ================= RIGHT (RESULTS) ================= */}
+				<motion.div className="relative rounded-2xl p-6 bg-black">
+					<h3 className="text-lg font-semibold mb-6">Live Result</h3>
+
+					<div className="space-y-4 text-sm">
+						<ResultRow label="Base Profit" value={result.baseProfit} />
+						<ResultRow label="Tax Rate (%)" value={result.taxRate * 100} />
+						<ResultRow label="Minimum Tax" value={result.minimumTax} />
+
+						<hr className="border-[#01bdfc]" />
+
+						<ResultRow
+							label="Estimated Tax"
+							value={result.estimatedTax}
+							highlight
+							big
+						/>
+					</div>
+				</motion.div>
+			</div>
+		</TaxFrame>
 	);
 }
 
