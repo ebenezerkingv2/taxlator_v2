@@ -3,16 +3,10 @@
 // =============================== APP.TSX
 
 import "./index.css";
-import Shell from "./components/layout/Shell";
-import AppRoutes from "./routes/AppRoutes";
-import ScrollToTop from "./utils/ScrollToTop";
+import AppProviders from "./providers/AppProviders";
 
 // ===================================== FUNCTION
+
 export default function App() {
-	return (
-		<Shell>
-			<ScrollToTop />
-			<AppRoutes />
-		</Shell>
-	);
+	return <AppProviders />;
 }

@@ -20,4 +20,5 @@ export const navLinks: NavLinkItem[] = [
 
 	{ type: "link", name: "TaxGuide", path: "/tax-guide" },
 	{ type: "link", name: "Login", path: "/login-page" },
+	{ type: "link", name: "Dashboard", path: "/dashboard" },
 ];

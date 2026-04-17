@@ -21,7 +21,7 @@ function Footer() {
 						<div>
 							<img
 								src={taxlator}
-								alt="Taxlator logo"
+								alt="Taxlator footer"
 								className="w-[13rem] h-auto block"
 							/>
 

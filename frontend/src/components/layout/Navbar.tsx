@@ -78,7 +78,7 @@ function Navbar() {
 							{isOpen ? (
 								<FaTimes size={28} className="text-[#f4ab17]" />
 							) : (
-								<GiHamburgerMenu size={28} className="text-white" />
+								<GiHamburgerMenu size={28} className="text-[#dbcfff]" />
 							)}
 						</motion.div>
 					</button>
