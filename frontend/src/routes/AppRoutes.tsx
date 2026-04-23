@@ -25,8 +25,10 @@ import LoginPage from "../pages/authPages/LoginPage";
 import SignUpPage from "../pages/authPages/SignUpPage";
 
 // =============================== DASHBOARD
-import Dashboard from "../components/dashboard/pages/Dashboard";
 import DashboardLayout from "../components/dashboard/DashboardLayout";
+import Dashboard from "../components/dashboard/dashPages/Dashboard";
+import HistoryPage from "../components/dashboard/dashPages/History";
+import ProfilePage from "../components/dashboard/dashPages/Profile";
 
 // =============================== FUNCTION
 export default function AppRoutes() {
@@ -56,11 +58,8 @@ export default function AppRoutes() {
 			{/* ================= PRIVATE SECTION (DASHBOARD) */}
 			<Route element={<DashboardLayout />}>
 				<Route path="/dashboard" element={<Dashboard />} />
-				<Route
-					path="/dashboard/calculations"
-					element={<div>Calculations</div>}
-				/>
-				<Route path="/dashboard/profile" element={<div>Profile</div>} />
+				<Route path="/dashboard/calculations" element={<HistoryPage />} />
+				<Route path="/dashboard/profile" element={<ProfilePage />} />
 			</Route>
 		</Routes>
 	);

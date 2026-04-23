@@ -1,32 +1,33 @@
 // =====================================
-// src/pages/components/ui/frames/heroFrame.tsx
-// ===================================== HERO FRAME COMPONENT
+// src/pages/components/dashboard/dashComponents/DashboardCardFrame.tsx
+// ===================================== DASHBOARD CARD FRAME COMPONENT
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 // ===================================== DATA
-type HeroFrameProps = {
+type DashboradCardFrameProps = {
 	id?: string;
 	children: ReactNode;
 	className?: string;
-	onAnimationComplete?: () => void;
 };
 
 // ===================================== FUNCTION
-export default function HeroFrame({
+export default function DashboradCardFrame({
 	id,
 	children,
 	className = "",
-	onAnimationComplete,
-}: HeroFrameProps) {
+}: DashboradCardFrameProps) {
 	return (
 		<motion.div
 			id={id}
-			initial={{ scale: 1.1, opacity: 0 }}
-			animate={{ scale: 1, opacity: 1 }}
-			transition={{ duration: 1.5, ease: "easeOut" }}
-			onAnimationComplete={onAnimationComplete}
+			initial={{ opacity: 0, y: 10 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{
+				delay: 0.4,
+				duration: 0.9,
+				ease: [0.4, 0, 0.2, 1],
+			}}
 			className={`w-full ${className}`}
 		>
 			{children}

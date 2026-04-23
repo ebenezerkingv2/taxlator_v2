@@ -8,7 +8,7 @@ import TaxOptionsButton from "../../components/ui/buttons/TaxOptionsButton";
 import CalculateTaxButton from "../../components/ui/buttons/CalculateTaxButton";
 import CurrencyInput from "../../components/ui/inputs/CurrencyInput";
 import { parseNumber } from "../../utils/numberInput";
-import CompanySizeSelect from "../../components/ui/buttons/CompanySizeSelect";
+import CompanySizeSelect from "../../components/ui/buttons/CompanySizeSelectButton";
 import TaxFrame from "../../components/ui/frames/TaxFrame";
 
 // ==================================== FUNCTION

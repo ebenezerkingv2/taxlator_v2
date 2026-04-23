@@ -26,7 +26,7 @@ export default function CalculateTaxButton({
 			onClick={onClick}
 			disabled={isDisabled}
 			className={`
-				relative mt-6 w-full rounded-lg py-3 text-sm font-bold overflow-hidden transition-all duration-200
+				relative mt-6 w-full rounded-lg py-3 text-sm font-bold overflow-hidden transition-all duration-400
 
 				${
 					isDisabled
@@ -37,13 +37,13 @@ export default function CalculateTaxButton({
 				${className}
 			`}
 		>
-			{/* TOP GLOW */}
-			<span className="absolute left-0 top-0 w-full h-[2px] bg-[#f4ab17] shadow-[0_0_20px_4px_#f4ab17]" />
+			{/* ============================== TOP GLOW */}
+			<span className="absolute left-0 top-0 w-full h-[2px] bg-[#f4ab17] shadow-[0_0_12px_#f4ab17]" />
 
-			{/* BOTTOM GLOW */}
-			<span className="absolute right-0 bottom-0 w-full h-[2px] bg-[#01bdfc] shadow-[0_0_20px_4px_#01bdfc]" />
+			{/* ============================== BOTTOM GLOW */}
+			<span className="absolute right-0 bottom-0 w-full h-[2px] bg-[#01bdfc] shadow-[0_0_12px_#01bdfc]" />
 
-			{/* CONTENT */}
+			{/* ============================== CONTENT */}
 			<span className="relative z-10">{loading ? loadingLabel : label}</span>
 		</button>
 	);

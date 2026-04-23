@@ -32,8 +32,8 @@ export default function GeneralButton({
 			<NavLink to={to} className={`${baseStyles} ${className}`}>
 				{children}
 
-				<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-300 group-hover:w-full" />
-				<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-300 group-hover:w-full" />
+				<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-400 group-hover:w-full" />
+				<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-400 group-hover:w-full" />
 			</NavLink>
 		);
 	}
@@ -47,8 +47,8 @@ export default function GeneralButton({
 		>
 			{children}
 
-			<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-300 group-hover:w-full" />
-			<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-300 group-hover:w-full" />
+			<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-400 group-hover:w-full" />
+			<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-400 group-hover:w-full" />
 		</motion.button>
 	);
 }

@@ -3,7 +3,6 @@
 // ===================================== FOOTER COMPONENT
 
 import { motion } from "framer-motion";
-import taxlator from "../../assets/logo/taxlator.webp";
 import FooterLink from "../ui/links/FooterLinkStyle";
 import ExternalLink from "../ui/links/ExternalLinkStyle";
 import { footerLinks, socialLinks } from "../../config/footerData";
@@ -20,7 +19,7 @@ function Footer() {
 						{/* ================= LEFT */}
 						<div>
 							<img
-								src={taxlator}
+								src="/taxlator.webp"
 								alt="Taxlator footer"
 								className="w-[13rem] h-auto block"
 							/>
@@ -57,7 +56,7 @@ function Footer() {
 										<ExternalLink
 											key={i}
 											href={social.href}
-											className="p-3 rounded-xl bg-black/40 text-[#f4ab17] hover:bg-[#01bdfc] hover:text-black transition-all duration-300"
+											className="p-3 rounded-xl bg-black/40 text-[#f4ab17] hover:bg-[#01bdfc] hover:text-black transition-all duration-400"
 										>
 											<Icon size={18} />
 										</ExternalLink>

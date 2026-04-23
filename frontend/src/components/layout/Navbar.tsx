@@ -47,7 +47,7 @@ function Navbar() {
 						className="h-[45px] md:h-[55px] lg:h-[65px] w-auto"
 					/>
 
-					<TimeDate className="" />
+					<TimeDate className="text-sm" />
 				</div>
 
 				{/* ================ NAVIGATION LINKS ================ */}
@@ -72,8 +72,8 @@ function Navbar() {
 					<button onClick={() => setIsOpen(!isOpen)} className="md:hidden z-50">
 						<motion.div
 							initial={false}
-							animate={{ rotate: isOpen ? 180 : 0 }}
-							transition={{ duration: 0.6 }}
+							animate={{ rotate: isOpen ? 360 : 0 }}
+							transition={{ duration: 0.9 }}
 						>
 							{isOpen ? (
 								<FaTimes size={28} className="text-[#f4ab17]" />

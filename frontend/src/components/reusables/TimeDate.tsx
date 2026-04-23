@@ -39,7 +39,7 @@ const TimeDate = ({ className = "" }: TimeDateProps) => {
 
 	return (
 		<div
-			className={`time-date__parent flex flex-col leading-none text-[0.9rem] font-bold italic mt-[0.3rem] ${className}`}
+			className={`time-date__parent flex flex-col leading-none font-bold ${className}`}
 		>
 			<p className="m-1">{gmtTime}</p>
 			<p className="m-1">{gmtDate}</p>

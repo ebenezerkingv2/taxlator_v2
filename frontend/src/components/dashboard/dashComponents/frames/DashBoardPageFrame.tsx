@@ -1,32 +1,33 @@
 // =====================================
-// src/pages/components/ui/frames/heroFrame.tsx
-// ===================================== HERO FRAME COMPONENT
+// src/pages/components/dashboard/dashComponents/frames/DashboardPageFrame.tsx
+// ===================================== DASHBOARD PAGE FRAME COMPONENT
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 // ===================================== DATA
-type HeroFrameProps = {
+type DashboardPageFrameProps = {
 	id?: string;
 	children: ReactNode;
 	className?: string;
 	onAnimationComplete?: () => void;
+
 };
 
 // ===================================== FUNCTION
-export default function HeroFrame({
+export default function DashboardPageFrame({
 	id,
 	children,
 	className = "",
 	onAnimationComplete,
-}: HeroFrameProps) {
+}: DashboardPageFrameProps) {
 	return (
 		<motion.div
 			id={id}
-			initial={{ scale: 1.1, opacity: 0 }}
-			animate={{ scale: 1, opacity: 1 }}
-			transition={{ duration: 1.5, ease: "easeOut" }}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
 			onAnimationComplete={onAnimationComplete}
+			transition={{ duration: 1.5, ease: "easeOut" }}
 			className={`w-full ${className}`}
 		>
 			{children}
