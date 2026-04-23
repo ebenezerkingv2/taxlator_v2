@@ -1,15 +1,21 @@
 // =====================================
 // src/components/dashboard/dashComponents/ProfileImageUploader.tsx
-// =====================================
-
-// =====================================
-// src/dashboard/dashComponents/ProfileImageUploader.tsx
-// =====================================
+// ===================================== PROFILE IMAGE UPLOADER
 
 import { useState } from "react";
 import { useUser } from "../../../context/useUser";
 
-export default function ProfileImageUploader() {
+import { IoCameraSharp } from "react-icons/io5";
+
+// ===================================== DATA
+type ProfileImageUploaderProps = {
+	className?: string;
+};
+
+// ===================================== FUNCTION
+export default function ProfileImageUploader({
+	className = "",
+}: ProfileImageUploaderProps) {
 	const { user, setUser } = useUser();
 	const [loading, setLoading] = useState(false);
 
@@ -45,27 +51,37 @@ export default function ProfileImageUploader() {
 	};
 
 	return (
-		<div className="flex items-center gap-4">
+		<div className={`relative w-40 h-40 md:w-45 md:h-45 ${className}`}>
+			{/* ================= PROFILE IMAGE */}
 			<img
 				src={
 					user.image ||
 					"https://res.cloudinary.com/dfupktkqb/image/upload/f_auto,q_auto/kingv2_q42hnf"
 				}
 				alt="Profile"
-				className="w-20 h-20 md:w-30 md:h-30 object-cover border-4 border-[#01bdfc] rounded-full"
+				className="w-full h-full object-cover border-4 border-[#01bdfc] rounded-full"
 			/>
 
-			<label className="relative group cursor-pointer px-3 py-2 bg-black/30 text-[#01bdfc] rounded-lg text-sm hover:bg-black">
-				{loading ? "Uploading..." : "Change Photo"}
-				<input
-					type="file"
-					accept="image/*"
-					onChange={handleImageUpload}
-					className="hidden"
-				/>
+			{/* ================= HIDDEN INPUT */}
+			<input
+				type="file"
+				accept="image/*"
+				onChange={handleImageUpload}
+				className="hidden"
+				id="profileUpload"
+			/>
 
-				<span className="absolute left-0 top-0 w-0 h-[2px] bg-[#f4ab17] transition-all duration-400 group-hover:w-full" />
-				<span className="absolute right-0 bottom-0 w-0 h-[2px] bg-[#01bdfc] transition-all duration-400 group-hover:w-full" />
+			{/* ================= CAMERA ICON */}
+			<label
+				htmlFor="profileUpload"
+				className="absolute bottom-0 right-0 bg-[#01bdfc]/10 rounded cursor-pointer 
+			text-[#01bdfc]/80 hover:text-[#01bdfc] hover:bg-black/10 transition"
+			>
+				{loading ? (
+					<span className="text-[10px]">...</span>
+				) : (
+					<IoCameraSharp size={40} />
+				)}
 			</label>
 		</div>
 	);

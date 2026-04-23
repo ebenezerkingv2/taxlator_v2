@@ -24,7 +24,7 @@ export default function Profile() {
 
 			{/* =============================== DATA STATS */}
 			<CardFrame className="p-4 rounded-xl">
-				<ProfileImageUploader />
+				<ProfileImageUploader className="mx-auto" />
 				<div className="mt-5 space-y-2 text-sm md:text-lg">
 					<p>
 						<span className="text-[#f4ab17]">Name:</span> {user.name}
